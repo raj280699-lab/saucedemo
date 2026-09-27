@@ -1,14 +1,19 @@
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
+
   testDir: './tests',
-  timeout: 30000,
+
+  reporter: [
+    ['html', { outputFolder: 'playwright-report', open: 'never' }],
+    ['list']
+  ],
 
   use: {
-    headless: false,
+    headless: true,
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
-    trace: 'on-first-retry',
+    trace: 'on-first-retry'
   },
 
   projects: [
@@ -25,4 +30,5 @@ export default defineConfig({
       use: { ...devices['Desktop Safari'] },
     },
   ],
+
 });
