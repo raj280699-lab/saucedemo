@@ -9,8 +9,6 @@ pipeline {
 
         stage('Check Node') {
             steps {
-                sh 'which node'
-                sh 'which npm'
                 sh 'node -v'
                 sh 'npm -v'
             }
@@ -32,6 +30,12 @@ pipeline {
             steps {
                 sh 'npx playwright test'
             }
+        }
+    }
+
+    post {
+        always {
+            archiveArtifacts artifacts: 'playwright-report/**', fingerprint: true
         }
     }
 }
