@@ -31,14 +31,23 @@ pipeline {
                 sh 'npx playwright test'
             }
         }
+
+        stage('Check Report') {
+            steps {
+                sh 'pwd'
+                sh 'ls -la'
+                sh 'find . -name "playwright-report"'
+            }
+        }
     }
 
-  post {
-    always {
-        archiveArtifacts(
-            artifacts: 'playwright-report/**',
-            fingerprint: true,
-            allowEmptyArchive: true
-        )
+    post {
+        always {
+            archiveArtifacts(
+                artifacts: 'playwright-report/**',
+                fingerprint: true,
+                allowEmptyArchive: true
+            )
+        }
     }
 }
