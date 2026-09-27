@@ -33,9 +33,12 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            archiveArtifacts artifacts: 'playwright-report/**', fingerprint: true
-        }
+  post {
+    always {
+        archiveArtifacts(
+            artifacts: 'playwright-report/**',
+            fingerprint: true,
+            allowEmptyArchive: true
+        )
     }
 }
