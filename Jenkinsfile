@@ -3,13 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                git branch: 'main',
-                url: 'git@github.com:raj280699-lab/saucedemo.git'
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
                 sh 'npm install'
@@ -26,12 +19,6 @@ pipeline {
             steps {
                 sh 'npx playwright test'
             }
-        }
-    }
-
-    post {
-        always {
-            archiveArtifacts artifacts: 'playwright-report/**'
         }
     }
 }
