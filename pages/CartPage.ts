@@ -3,13 +3,11 @@ import { Page, expect } from '@playwright/test';
 export class CartPage {
 
     constructor(private page: Page) {}
-
-    async verifyProduct() {
-
-        await expect(
-            this.page.locator('.inventory_item_name')
-        ).toContainText('Sauce Labs Bolt T-Shirt');
-    }
+async verifyProduct() {
+    await expect(
+        this.page.locator('.inventory_item_name').first()
+    ).toContainText('Sauce Labs Bolt T-Shirt');
+}
 
     async checkout() {
         await this.page.click('#checkout');
