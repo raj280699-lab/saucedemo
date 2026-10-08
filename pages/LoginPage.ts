@@ -7,10 +7,9 @@ export class LoginPage {
     username = '#user-name';
     password = '#password';
     loginBtn = '#login-button';
-
-    async navigate() {
-        await this.page.goto('https://www.saucedemo.com/');
-    }
+async navigate() {
+    await this.page.goto('https://www.saucedemo.com/');
+}
 
     async login(username: string, password: string) {
         await this.page.fill(this.username, username);
